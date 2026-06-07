@@ -191,69 +191,6 @@
   }
   .intro em{color:var(--accent);font-style:italic}
 
-  /* ====== FORMS ====== */
-  .form-section{
-    margin-top:80px;
-    background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
-    border:1px solid var(--line-2);
-    border-radius:20px;
-    padding:48px;
-    position:relative;
-    overflow:hidden;
-  }
-  .form-section::before{
-    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
-    background:linear-gradient(180deg,var(--gold),var(--gold-2));
-  }
-  .form-section h2{
-    font-family:var(--serif);
-    font-size:36px;
-    font-weight:500;
-    color:#f5ead0;
-    margin:0 0 8px;
-    letter-spacing:-.01em;
-  }
-  .form-section .lead{color:#c8b78a;margin-bottom:32px;font-size:17px;max-width:600px}
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .form-grid .full{grid-column:1/-1}
-  .form-row{display:flex;flex-direction:column;gap:6px}
-  .form-row label{
-    font-family:var(--sans);
-    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--ink-dim);
-    font-weight:500;
-  }
-  .form-row input,.form-row select,.form-row textarea{
-    background:rgba(0,0,0,.3);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:14px 16px;
-    color:#f5ead0;
-    font-family:var(--serif);
-    font-size:16px;
-    transition:border-color .2s,background .2s;
-  }
-  .form-row textarea{resize:vertical;min-height:120px;line-height:1.5}
-  .form-row input:focus,.form-row select:focus,.form-row textarea:focus{
-    outline:none;
-    border-color:var(--gold);
-    background:rgba(227,184,99,.05);
-  }
-  .form-row select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:40px}
-  .form-row select option{background:#161109;color:#f5ead0}
-  .submit-row{margin-top:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .status-msg{font-family:var(--sans);font-size:13px;letter-spacing:.05em;padding:10px 16px;border-radius:8px;display:none}
-  .status-msg.ok{display:inline-block;background:rgba(123,166,104,.15);color:#a8c98f;border:1px solid rgba(123,166,104,.3)}
-  .status-msg.err{display:inline-block;background:rgba(196,90,74,.15);color:#e08574;border:1px solid rgba(196,90,74,.3)}
-  .newsletter{margin-top:32px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .newsletter input{flex:1;min-width:220px}
-  .newsletter button{flex-shrink:0}
-  @media (max-width:640px){
-    .form-section{padding:32px 24px}
-    .form-grid{grid-template-columns:1fr}
-    .form-section h2{font-size:28px}
-  }
-
   /* ====== DAY CARD ====== */
   .day{
     background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
@@ -324,56 +261,239 @@
 
   /* ====== EXTRAS GRID ====== */
   section.extras{
-    margin-top:80px;
+    margin-top:96px;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:repeat(2,1fr);
     gap:24px;
   }
   .card{
     background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
     border:1px solid var(--line);
-    border-radius:16px;
-    padding:32px;
+    border-radius:20px;
+    padding:36px;
     position:relative;
-    transition:border-color .25s,transform .25s;
+    overflow:hidden;
+    transition:border-color .3s,transform .3s,box-shadow .3s;
   }
-  .card:hover{border-color:var(--gold-3);transform:translateY(-2px)}
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold) 0%,var(--gold-2) 100%);
+    opacity:.7;transition:opacity .3s;
+  }
+  .card::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;
+    background:radial-gradient(circle,rgba(227,184,99,.08),transparent 60%);
+    pointer-events:none;
+  }
+  .card:hover{
+    border-color:var(--gold-2);
+    transform:translateY(-4px);
+    box-shadow:0 16px 40px -16px rgba(0,0,0,.5),0 0 0 1px rgba(227,184,99,.1);
+  }
+  .card:hover::before{opacity:1}
+
+  .card .icon-circle{
+    width:52px;height:52px;
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg,rgba(227,184,99,.18),rgba(227,184,99,.06));
+    border:1px solid rgba(227,184,99,.25);
+    margin-bottom:18px;
+    position:relative;
+  }
+  .card .icon-circle .ic{
+    font-size:24px;line-height:1;
+    filter:drop-shadow(0 0 8px rgba(227,184,99,.3));
+  }
   .card h2{
-    margin:0 0 20px;
+    margin:0 0 6px;
     font-family:var(--serif);
-    font-size:24px;
+    font-size:28px;
     font-weight:500;
     color:#f5ead0;
-    display:flex;align-items:center;gap:12px;
-    padding-bottom:16px;
+    letter-spacing:-.01em;
+    line-height:1.2;
+  }
+  .card .subtitle{
+    font-family:var(--sans);
+    font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--ink-dim);
+    font-weight:500;
+    margin-bottom:22px;
+    padding-bottom:18px;
     border-bottom:1px solid var(--line);
   }
-  .card h2 .ic{font-size:22px;color:var(--gold)}
-  .card ul{padding-left:20px;line-height:1.95;margin:0}
-  .card li{color:#d8c89e;margin:4px 0}
+  .card ul{
+    list-style:none;padding:0;margin:0;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .card li{
+    color:#d8c89e;
+    padding-left:28px;
+    position:relative;
+    line-height:1.55;
+    font-size:16px;
+  }
+  .card li::before{
+    content:"";
+    position:absolute;left:0;top:9px;
+    width:16px;height:2px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-2));
+    border-radius:1px;
+  }
   .card li strong{color:#f5ead0;font-weight:600}
 
+  /* === Budget table polish === */
+  .budget .table-wrap{
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    background:rgba(0,0,0,.2);
+  }
   .budget table{
     width:100%;
     border-collapse:collapse;
     font-family:var(--sans);
     font-size:13px;
   }
+  .budget thead{
+    background:linear-gradient(180deg,rgba(227,184,99,.1),rgba(227,184,99,.04));
+  }
   .budget th,.budget td{
-    padding:12px 6px;
+    padding:13px 12px;
     text-align:left;
-    border-bottom:1px solid var(--line);
   }
   .budget th{
     color:var(--accent);
     font-weight:600;
-    letter-spacing:.05em;
+    letter-spacing:.08em;
     text-transform:uppercase;
     font-size:10px;
+    border-bottom:1px solid var(--line-2);
   }
-  .budget td{color:#d8c89e}
-  .budget td:last-child{text-align:right;color:var(--accent);font-weight:600}
-  .budget tr:last-child td{border-bottom:none}
+  .budget tbody tr{
+    transition:background .2s;
+    border-bottom:1px solid rgba(42,34,24,.5);
+  }
+  .budget tbody tr:last-child{border-bottom:none}
+  .budget tbody tr:hover{background:rgba(227,184,99,.04)}
+  .budget tbody tr:nth-child(2){background:rgba(227,184,99,.025)}
+  .budget tbody tr:nth-child(3){background:rgba(227,184,99,.04)}
+  .budget td{
+    color:#e6d5a6;
+    font-weight:500;
+  }
+  .budget td:first-child{color:#f5ead0;font-weight:600}
+  .budget td:not(:last-child):not(:first-child){
+    color:var(--ink-dim);
+    text-align:center;
+  }
+  .budget td:last-child{
+    text-align:right;
+    color:var(--accent);
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+  }
+  .tier-tag{
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:6px;
+    font-size:9px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-left:6px;
+    vertical-align:middle;
+  }
+  .tier-tag.bp{background:rgba(184,138,54,.2);color:#d4a857}
+  .tier-tag.mr{background:rgba(123,166,104,.2);color:#a8c98f}
+  .tier-tag.lx{background:rgba(196,90,74,.2);color:#e08574}
+
+  .card .footnote{
+    margin-top:14px;
+    font-family:var(--sans);
+    font-size:11px;
+    color:var(--ink-dim);
+    line-height:1.6;
+    letter-spacing:.02em;
+  }
+
+  /* === Best time: season strip === */
+  .seasons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .season{
+    padding:14px 12px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:rgba(0,0,0,.2);
+    text-align:center;
+    transition:border-color .2s,transform .2s;
+  }
+  .season:hover{border-color:var(--gold-2);transform:translateY(-2px)}
+  .season .label{
+    font-family:var(--sans);
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:6px;
+  }
+  .season .temp{
+    font-family:var(--serif);
+    font-size:20px;
+    color:var(--accent);
+    font-weight:500;
+    margin-bottom:4px;
+  }
+  .season .badge{
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:999px;
+    font-family:var(--sans);
+    font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+    font-weight:600;
+  }
+  .season.cool .badge{background:rgba(123,166,104,.2);color:#a8c98f}
+  .season.hot .badge{background:rgba(196,90,74,.2);color:#e08574}
+  .season.ramadan .badge{background:rgba(184,138,54,.2);color:#d4a857}
+
+  /* === Practical notes: stat row === */
+  .quick-facts{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .fact{
+    padding:14px 12px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:rgba(0,0,0,.2);
+    transition:border-color .2s;
+  }
+  .fact:hover{border-color:var(--gold-2)}
+  .fact .lbl{
+    font-family:var(--sans);
+    font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:4px;
+  }
+  .fact .val{
+    font-family:var(--serif);
+    font-size:18px;
+    color:#f5ead0;
+    font-weight:500;
+  }
+
+  @media (max-width:780px){
+    section.extras{grid-template-columns:1fr;gap:20px}
+    .card{padding:28px 24px}
+    .card h2{font-size:24px}
+    .seasons{grid-template-columns:1fr}
+    .quick-facts{grid-template-columns:1fr}
+  }
 
   /* ====== CTA ====== */
   .cta{
@@ -456,7 +576,7 @@
     main{padding:40px 16px 60px}
     .day{padding:24px 20px}
     .day h3{font-size:24px}
-    .card{padding:24px}
+    section.extras .card{padding:28px 24px}
     .cta h2{font-size:32px}
     header .meta{gap:24px}
     header .meta strong{font-size:22px}
@@ -735,7 +855,9 @@
 <section class="extras">
 
   <div class="card">
-    <h2><span class="ic">🧳</span>Packing List</h2>
+    <div class="icon-circle"><span class="ic">🧳</span></div>
+    <h2>Packing List</h2>
+    <div class="subtitle">Essentials · 10 items</div>
     <ul>
       <li>Lightweight cotton / linen (day), warm layer (desert nights)</li>
       <li>Modest cover for mosques (shoulders + knees)</li>
@@ -751,133 +873,77 @@
   </div>
 
   <div class="card budget">
-    <h2><span class="ic">💰</span>Budget Estimate (per person, USD)</h2>
-    <table>
-      <thead><tr><th>Tier</th><th>Daily</th><th>5D</th><th>7D</th><th>10D</th><th>14D</th></tr></thead>
-      <tbody>
-        <tr><td>Backpacker</td><td>$40</td><td>$200</td><td>$280</td><td>$400</td><td>$560</td></tr>
-        <tr><td>Mid-range</td><td>$130</td><td>$650</td><td>$910</td><td>$1,300</td><td>$1,820</td></tr>
-        <tr><td>Luxury</td><td>$350+</td><td>$1,750</td><td>$2,450</td><td>$3,500</td><td>$4,900+</td></tr>
-      </tbody>
-    </table>
-    <p style="font-family:var(--sans);font-size:11px;color:var(--ink-dim);margin-top:14px;line-height:1.6;letter-spacing:.02em">Excludes international flights. Nile cruise adds $400–$1,500 by boat class. Internal flights Cairo–Luxor–Aswan run $90–$150 each.</p>
+    <div class="icon-circle"><span class="ic">💰</span></div>
+    <h2>Budget Estimate</h2>
+    <div class="subtitle">Per person · USD</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tier</th><th>Daily</th><th>5D</th><th>7D</th><th>10D</th><th>14D</th></tr></thead>
+        <tbody>
+          <tr><td>Backpacker<span class="tier-tag bp">$</span></td><td>$40</td><td>$200</td><td>$280</td><td>$400</td><td>$560</td></tr>
+          <tr><td>Mid-range<span class="tier-tag mr">$$</span></td><td>$130</td><td>$650</td><td>$910</td><td>$1,300</td><td>$1,820</td></tr>
+          <tr><td>Luxury<span class="tier-tag lx">$$$</span></td><td>$350+</td><td>$1,750</td><td>$2,450</td><td>$3,500</td><td>$4,900+</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footnote">Excludes international flights. Nile cruise adds $400–$1,500 by boat class. Internal flights Cairo–Luxor–Aswan run $90–$150 each.</div>
   </div>
 
   <div class="card">
-    <h2><span class="ic">📅</span>Best Time to Go</h2>
+    <div class="icon-circle"><span class="ic">📅</span></div>
+    <h2>Best Time to Go</h2>
+    <div class="subtitle">Season guide</div>
+    <div class="seasons">
+      <div class="season cool">
+        <div class="label">Oct – Apr</div>
+        <div class="temp">18–26°C</div>
+        <span class="badge">Ideal</span>
+      </div>
+      <div class="season hot">
+        <div class="label">May – Sep</div>
+        <div class="temp">35–45°C</div>
+        <span class="badge">Cheap</span>
+      </div>
+      <div class="season ramadan">
+        <div class="label">Ramadan</div>
+        <div class="temp">Varies</div>
+        <span class="badge">Shifted</span>
+      </div>
+    </div>
     <ul>
-      <li><strong>Oct–Apr:</strong> Cool (18–26°C), ideal for all sites.</li>
-      <li><strong>May–Sep:</strong> Hot (35–45°C), low season, cheaper.</li>
-      <li><strong>Ramadan:</strong> Sites stay open but hours shift, restaurants close midday.</li>
+      <li><strong>Cool season</strong> is the sweet spot — mild temps, all sites open, Nile cruises run full schedule.</li>
+      <li><strong>Summer</strong> means fewer crowds, lower prices, but midday heat is brutal (40°C+).</li>
+      <li><strong>Ramadan</strong> sites stay open but hours shift; some restaurants close at midday.</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2><span class="ic">🛂</span>Practical Notes</h2>
+    <div class="icon-circle"><span class="ic">🛂</span></div>
+    <h2>Practical Notes</h2>
+    <div class="subtitle">Logistics · money · sim</div>
+    <div class="quick-facts">
+      <div class="fact"><div class="lbl">Visa</div><div class="val">$25</div></div>
+      <div class="fact"><div class="lbl">Currency</div><div class="val">EGP</div></div>
+      <div class="fact"><div class="lbl">Voltage</div><div class="val">220V</div></div>
+      <div class="fact"><div class="lbl">Plug</div><div class="val">C / F</div></div>
+    </div>
     <ul>
-      <li>Visa on arrival: $25 USD, or e-visa online.</li>
-      <li>Currency: Egyptian Pound (EGP). USD widely accepted.</li>
-      <li>Tipping (baksheesh) expected — small change adds up.</li>
-      <li>Drinks: bottled water only. Ice in hotels/restaurants is fine.</li>
-      <li>SIM: buy Vodafone/Orange at airport ($5 for 10GB).</li>
+      <li>Visa on arrival ($25 USD) or apply for e-visa online before flying.</li>
+      <li>Egyptian Pound is official; USD widely accepted in tourist zones.</li>
+      <li>Tipping (baksheesh) is expected — keep small EGP notes handy.</li>
+      <li>Drink bottled water only. Hotel/restaurant ice is fine.</li>
+      <li>Buy a Vodafone or Orange SIM at the airport ($5 for ~10GB).</li>
     </ul>
   </div>
 
-</section>
-
-<!-- BOOKING FORM -->
-<section class="form-section" id="book">
-  <h2>Request a Booking</h2>
-  <p class="lead">Tell us the trip you want. We'll reply within 24 hours with a quote, suggested guides, and a draft itinerary.</p>
-  <form id="booking-form" class="form-grid" novalidate>
-    <div class="form-row">
-      <label for="b-name">Name</label>
-      <input id="b-name" name="name" type="text" required maxlength="200" placeholder="Your full name">
-    </div>
-    <div class="form-row">
-      <label for="b-email">Email</label>
-      <input id="b-email" name="email" type="email" required placeholder="you@email.com">
-    </div>
-    <div class="form-row">
-      <label for="b-phone">Phone (optional)</label>
-      <input id="b-phone" name="phone" type="tel" maxlength="50" placeholder="+1 555 0123">
-    </div>
-    <div class="form-row">
-      <label for="b-itin">Itinerary</label>
-      <select id="b-itin" name="itinerary" required>
-        <option value="">Choose a route</option>
-        <option value="5-day">5 Days · Essentials</option>
-        <option value="7-day">7 Days · Classic</option>
-        <option value="10-day">10 Days · With Nile Cruise</option>
-        <option value="14-day">14 Days · Deep Dive</option>
-      </select>
-    </div>
-    <div class="form-row">
-      <label for="b-date">Start Date</label>
-      <input id="b-date" name="start_date" type="date" required>
-    </div>
-    <div class="form-row">
-      <label for="b-size">Group Size</label>
-      <input id="b-size" name="group_size" type="number" min="1" max="50" value="2" required>
-    </div>
-    <div class="form-row full">
-      <label for="b-tier">Budget Tier</label>
-      <select id="b-tier" name="tier" required>
-        <option value="mid-range">Mid-range ($130/day)</option>
-        <option value="backpacker">Backpacker ($40/day)</option>
-        <option value="luxury">Luxury ($350+/day)</option>
-      </select>
-    </div>
-    <div class="form-row full">
-      <label for="b-notes">Notes / Special Requests</label>
-      <textarea id="b-notes" name="notes" maxlength="2000" placeholder="Any accessibility needs, must-see sites, dietary restrictions, travel companions..."></textarea>
-    </div>
-    <div class="submit-row full">
-      <button type="submit" class="btn">Request Quote</button>
-      <span class="status-msg" id="b-status"></span>
-    </div>
-  </form>
-</section>
-
-<!-- CONTACT + NEWSLETTER -->
-<section class="form-section" id="contact">
-  <h2>Get in Touch</h2>
-  <p class="lead">Custom itineraries, group bookings, or questions about a trip. We read every message.</p>
-  <form id="contact-form" class="form-grid" novalidate>
-    <div class="form-row">
-      <label for="c-name">Name</label>
-      <input id="c-name" name="name" type="text" required maxlength="200" placeholder="Your name">
-    </div>
-    <div class="form-row">
-      <label for="c-email">Email</label>
-      <input id="c-email" name="email" type="email" required placeholder="you@email.com">
-    </div>
-    <div class="form-row full">
-      <label for="c-msg">Message</label>
-      <textarea id="c-msg" name="message" required maxlength="5000" placeholder="Tell us what you're thinking..."></textarea>
-    </div>
-    <div class="submit-row full">
-      <button type="submit" class="btn">Send Message</button>
-      <span class="status-msg" id="c-status"></span>
-    </div>
-  </form>
-
-  <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--line)">
-    <h2 style="font-size:24px;margin-bottom:6px">Newsletter</h2>
-    <p class="lead" style="margin-bottom:16px">New routes, seasonal deals, and travel notes. ~1 email per month.</p>
-    <form id="subscribe-form" class="newsletter" novalidate>
-      <input name="email" type="email" required placeholder="you@email.com" aria-label="Email">
-      <button type="submit" class="btn">Subscribe</button>
-      <span class="status-msg" id="s-status"></span>
-    </form>
-  </div>
 </section>
 
 <div class="cta">
-  <h2>Or browse curated packages</h2>
-  <p>Skip the planning — pick a vetted tour from trusted partners.</p>
-  <a class="btn" href="https://www.getyourguide.com/cairo-l169/" target="_blank" rel="noopener">GetYourGuide</a>
-  <a class="btn ghost" href="https://www.viator.com/Egypt-tours/d19" target="_blank" rel="noopener">Viator</a>
+  <h2>Ready to walk with the Pharaohs?</h2>
+  <p>Lock in guides, cruises, and internal flights — or just browse options.</p>
+  <a class="btn" href="https://www.getyourguide.com/cairo-l169/" target="_blank" rel="noopener">Book Guided Tours</a>
+  <a class="btn ghost" href="https://www.viator.com/Egypt-tours/d19" target="_blank" rel="noopener">Viator Packages</a>
+  <a class="btn ghost" href="mailto:hello@youregypt.example">Contact a Planner</a>
 </div>
 
 </main>
@@ -888,7 +954,6 @@
 </footer>
 
 <script>
-  // ---- tab switching ----
   const tabs = document.querySelectorAll('nav.tabs button');
   const panels = document.querySelectorAll('.panel');
   tabs.forEach(btn => {
@@ -899,100 +964,6 @@
       document.getElementById(btn.dataset.tab).classList.add('active');
       window.scrollTo({top:0,behavior:'smooth'});
     });
-  });
-
-  // ---- pre-fill booking form when switching tabs ----
-  tabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const sel = document.getElementById('b-itin');
-      if (sel && btn.dataset.tab.startsWith('d')) {
-        const map = { d5:'5-day', d7:'7-day', d10:'10-day', d14:'14-day' };
-        if (map[btn.dataset.tab]) sel.value = map[btn.dataset.tab];
-      }
-    });
-  });
-
-  // ---- min date = today ----
-  const dateInput = document.getElementById('b-date');
-  if (dateInput) {
-    const t = new Date();
-    dateInput.min = t.toISOString().slice(0,10);
-  }
-
-  // ---- form helpers ----
-  function setStatus(el, ok, msg) {
-    el.classList.remove('ok','err');
-    el.classList.add(ok ? 'ok' : 'err');
-    el.textContent = msg;
-    el.style.display = 'inline-block';
-  }
-
-  async function postJSON(url, body) {
-    const r = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-    const data = await r.json().catch(() => ({ ok:false, error:'bad response' }));
-    if (!r.ok || !data.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    return data;
-  }
-
-  function serialize(form) {
-    return Object.fromEntries(new FormData(form).entries());
-  }
-
-  // ---- booking form ----
-  document.getElementById('booking-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const status = document.getElementById('b-status');
-    const btn = e.target.querySelector('button[type=submit]');
-    const data = serialize(e.target);
-    data.group_size = Number(data.group_size);
-    btn.disabled = true; btn.textContent = 'Sending…';
-    try {
-      await postJSON('/api/booking', data);
-      setStatus(status, true, '✓ Quote request received. We will reply within 24 hours.');
-      e.target.reset();
-    } catch (err) {
-      setStatus(status, false, '✕ ' + err.message);
-    } finally {
-      btn.disabled = false; btn.textContent = 'Request Quote';
-    }
-  });
-
-  // ---- contact form ----
-  document.getElementById('contact-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const status = document.getElementById('c-status');
-    const btn = e.target.querySelector('button[type=submit]');
-    btn.disabled = true; btn.textContent = 'Sending…';
-    try {
-      await postJSON('/api/contact', serialize(e.target));
-      setStatus(status, true, '✓ Message sent. We will be in touch soon.');
-      e.target.reset();
-    } catch (err) {
-      setStatus(status, false, '✕ ' + err.message);
-    } finally {
-      btn.disabled = false; btn.textContent = 'Send Message';
-    }
-  });
-
-  // ---- newsletter ----
-  document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const status = document.getElementById('s-status');
-    const btn = e.target.querySelector('button[type=submit]');
-    const data = serialize(e.target);
-    btn.disabled = true; btn.textContent = 'Subscribing…';
-    try {
-      const r = await postJSON('/api/subscribe', data);
-      setStatus(status, true, r.already ? '✓ You are already on the list.' : '✓ Subscribed. Welcome aboard.');
-    } catch (err) {
-      setStatus(status, false, '✕ ' + err.message);
-    } finally {
-      btn.disabled = false; btn.textContent = 'Subscribe';
-    }
   });
 </script>
 
