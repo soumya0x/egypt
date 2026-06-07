@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ancient Egypt Itinerary — Walk with the Pharaohs</title>
+<style>
+  :root{
+    --bg:#0a0805;
+    --bg-2:#0f0c07;
+    --panel:#161109;
+    --panel-2:#1c160e;
+    --ink:#f5ead0;
+    --ink-2:#e6d5a6;
+    --ink-dim:#a8987a;
+    --gold:#e3b863;
+    --gold-2:#b88a36;
+    --gold-3:#8a6520;
+    --line:#2a2218;
+    --line-2:#3a2e1c;
+    --accent:#f0d28a;
+    --serif:"Cormorant Garamond","Cormorant","EB Garamond","Playfair Display",Georgia,"Times New Roman",serif;
+    --sans:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:#f5ead0;
+    font-family:var(--serif);
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+  a{color:var(--accent);text-decoration:none;transition:color .2s}
+  a:hover{color:#fff;text-decoration:none}
+  ::selection{background:var(--gold);color:#1a1208}
+
+  /* ====== HERO ====== */
+  header{
+    position:relative;
+    padding:120px 24px 100px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(227,184,99,.22), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(184,138,54,.12), transparent 70%),
+      linear-gradient(180deg,#0a0805 0%,#0f0c07 100%);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  header::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(227,184,99,.6) 50%, transparent 51%),
+      radial-gradient(1px 1px at 80% 20%, rgba(227,184,99,.5) 50%, transparent 51%),
+      radial-gradient(1px 1px at 40% 70%, rgba(227,184,99,.4) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 65% 80%, rgba(227,184,99,.55) 50%, transparent 51%),
+      radial-gradient(1px 1px at 10% 60%, rgba(227,184,99,.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 90% 50%, rgba(227,184,99,.5) 50%, transparent 51%);
+    background-size:100% 100%;
+    opacity:.5;
+    pointer-events:none;
+  }
+  header::after{
+    content:"";
+    position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);
+    width:200%;height:120px;
+    background:linear-gradient(180deg,transparent,var(--bg));
+    pointer-events:none;
+  }
+  header .glyph-row{
+    font-size:24px;letter-spacing:.4em;
+    color:var(--gold);
+    opacity:.85;
+    margin-bottom:24px;
+    font-family:var(--serif);
+  }
+  header .eyebrow{
+    display:inline-block;
+    padding:6px 18px;
+    border:1px solid var(--gold-3);
+    border-radius:999px;
+    color:var(--accent);
+    font-family:var(--sans);
+    font-size:11px;letter-spacing:.4em;text-transform:uppercase;
+    font-weight:500;
+    margin-bottom:28px;
+    background:rgba(227,184,99,.05);
+  }
+  header h1{
+    font-family:var(--serif);
+    font-size:clamp(48px,8vw,96px);
+    font-weight:500;
+    line-height:1;
+    letter-spacing:-.02em;
+    margin:0 0 24px;
+    background:linear-gradient(180deg,#fbe9b8 0%,#e3b863 50%,#b88a36 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 60px rgba(227,184,99,.15);
+  }
+  header h1 em{
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(180deg,#fff5d4,#e3b863);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  header .lead{
+    max-width:680px;margin:0 auto 36px;
+    color:#c8b78a;
+    font-size:20px;
+    line-height:1.6;
+    font-weight:400;
+  }
+  header .meta{
+    display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+    margin-top:48px;
+    font-family:var(--sans);
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  header .meta strong{
+    display:block;
+    color:var(--accent);
+    font-family:var(--serif);
+    font-size:28px;font-weight:500;
+    letter-spacing:0;
+    text-transform:none;
+    margin-bottom:4px;
+  }
+  .hero-pyramids{
+    position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:min(900px,100%);height:120px;
+    pointer-events:none;opacity:.18;
+  }
+
+  /* ====== TABS ====== */
+  nav.tabs{
+    position:sticky;top:0;z-index:50;
+    display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+    padding:18px 20px;
+    background:rgba(10,8,5,.85);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  nav.tabs button{
+    appearance:none;cursor:pointer;
+    background:transparent;
+    color:#c8b78a;
+    border:1px solid transparent;
+    padding:11px 24px;
+    font-family:var(--sans);
+    font-size:12px;font-weight:500;
+    letter-spacing:.25em;text-transform:uppercase;
+    border-radius:999px;
+    transition:all .25s cubic-bezier(.2,.8,.2,1);
+  }
+  nav.tabs button:hover{
+    color:#f5ead0;
+    border-color:var(--gold-3);
+    background:rgba(227,184,99,.06);
+  }
+  nav.tabs button.active{
+    background:linear-gradient(180deg,#e3b863,#b88a36);
+    color:#1a1208;
+    border-color:transparent;
+    box-shadow:0 8px 32px -8px rgba(227,184,99,.5),inset 0 1px 0 rgba(255,255,255,.2);
+  }
+
+  /* ====== MAIN ====== */
+  main{max-width:1180px;margin:0 auto;padding:64px 24px 100px}
+  .panel{display:none;animation:fade .45s cubic-bezier(.2,.8,.2,1)}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  .intro{
+    margin:0 0 48px;
+    color:#c8b78a;
+    font-size:21px;
+    line-height:1.65;
+    max-width:780px;
+    text-align:center;
+    margin-left:auto;margin-right:auto;
+  }
+  .intro em{color:var(--accent);font-style:italic}
+
+  /* ====== FORMS ====== */
+  .form-section{
+    margin-top:80px;
+    background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
+    border:1px solid var(--line-2);
+    border-radius:20px;
+    padding:48px;
+    position:relative;
+    overflow:hidden;
+  }
+  .form-section::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold),var(--gold-2));
+  }
+  .form-section h2{
+    font-family:var(--serif);
+    font-size:36px;
+    font-weight:500;
+    color:#f5ead0;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .form-section .lead{color:#c8b78a;margin-bottom:32px;font-size:17px;max-width:600px}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .form-grid .full{grid-column:1/-1}
+  .form-row{display:flex;flex-direction:column;gap:6px}
+  .form-row label{
+    font-family:var(--sans);
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-dim);
+    font-weight:500;
+  }
+  .form-row input,.form-row select,.form-row textarea{
+    background:rgba(0,0,0,.3);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 16px;
+    color:#f5ead0;
+    font-family:var(--serif);
+    font-size:16px;
+    transition:border-color .2s,background .2s;
+  }
+  .form-row textarea{resize:vertical;min-height:120px;line-height:1.5}
+  .form-row input:focus,.form-row select:focus,.form-row textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:rgba(227,184,99,.05);
+  }
+  .form-row select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:40px}
+  .form-row select option{background:#161109;color:#f5ead0}
+  .submit-row{margin-top:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .status-msg{font-family:var(--sans);font-size:13px;letter-spacing:.05em;padding:10px 16px;border-radius:8px;display:none}
+  .status-msg.ok{display:inline-block;background:rgba(123,166,104,.15);color:#a8c98f;border:1px solid rgba(123,166,104,.3)}
+  .status-msg.err{display:inline-block;background:rgba(196,90,74,.15);color:#e08574;border:1px solid rgba(196,90,74,.3)}
+  .newsletter{margin-top:32px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .newsletter input{flex:1;min-width:220px}
+  .newsletter button{flex-shrink:0}
+  @media (max-width:640px){
+    .form-section{padding:32px 24px}
+    .form-grid{grid-template-columns:1fr}
+    .form-section h2{font-size:28px}
+  }
+
+  /* ====== DAY CARD ====== */
+  .day{
+    background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:32px 36px;
+    margin:0 0 20px;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .25s,transform .25s;
+  }
+  .day:hover{
+    border-color:var(--gold-3);
+    transform:translateY(-2px);
+  }
+  .day::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold) 0%,var(--gold-2) 100%);
+  }
+  .day::after{
+    content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;
+    background:radial-gradient(circle,rgba(227,184,99,.06),transparent 60%);
+    pointer-events:none;
+  }
+  .day h3{
+    margin:0 0 8px;
+    font-family:var(--serif);
+    font-size:30px;
+    font-weight:500;
+    color:#f5ead0;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    letter-spacing:-.01em;
+  }
+  .day h3 .num{
+    font-family:var(--sans);
+    font-size:11px;letter-spacing:.3em;
+    color:var(--accent);
+    border:1px solid var(--gold-2);
+    background:rgba(227,184,99,.08);
+    border-radius:6px;
+    padding:5px 10px;
+    font-weight:600;
+  }
+  .day .city{
+    font-family:var(--sans);
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink-dim);
+    font-weight:500;
+  }
+  .day ul{
+    margin:18px 0 0;
+    padding-left:22px;
+    line-height:1.85;
+    color:#d8c89e;
+  }
+  .day li{margin:6px 0;color:#d8c89e}
+  .day li strong{color:#f5ead0;font-weight:600}
+  .day .tip{
+    margin-top:18px;padding:14px 18px;
+    background:linear-gradient(90deg,rgba(227,184,99,.1),rgba(227,184,99,.02));
+    border-left:2px solid var(--gold);
+    border-radius:0 8px 8px 0;
+    font-size:15px;
+    color:#d8c89e;
+    font-style:italic;
+    line-height:1.6;
+  }
+
+  /* ====== EXTRAS GRID ====== */
+  section.extras{
+    margin-top:80px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:24px;
+  }
+  .card{
+    background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:32px;
+    position:relative;
+    transition:border-color .25s,transform .25s;
+  }
+  .card:hover{border-color:var(--gold-3);transform:translateY(-2px)}
+  .card h2{
+    margin:0 0 20px;
+    font-family:var(--serif);
+    font-size:24px;
+    font-weight:500;
+    color:#f5ead0;
+    display:flex;align-items:center;gap:12px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .card h2 .ic{font-size:22px;color:var(--gold)}
+  .card ul{padding-left:20px;line-height:1.95;margin:0}
+  .card li{color:#d8c89e;margin:4px 0}
+  .card li strong{color:#f5ead0;font-weight:600}
+
+  .budget table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:var(--sans);
+    font-size:13px;
+  }
+  .budget th,.budget td{
+    padding:12px 6px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+  }
+  .budget th{
+    color:var(--accent);
+    font-weight:600;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    font-size:10px;
+  }
+  .budget td{color:#d8c89e}
+  .budget td:last-child{text-align:right;color:var(--accent);font-weight:600}
+  .budget tr:last-child td{border-bottom:none}
+
+  /* ====== CTA ====== */
+  .cta{
+    margin-top:80px;
+    text-align:center;
+    padding:72px 32px;
+    background:
+      radial-gradient(ellipse at center, rgba(227,184,99,.12), transparent 70%),
+      linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
+    border:1px solid var(--line-2);
+    border-radius:24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(1px 1px at 30% 30%, rgba(227,184,99,.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 70% 70%, rgba(227,184,99,.3) 50%, transparent 51%);
+    background-size:100% 100%;
+    pointer-events:none;
+  }
+  .cta h2{
+    font-family:var(--serif);
+    font-size:42px;font-weight:500;
+    margin:0 0 14px;
+    background:linear-gradient(180deg,#fbe9b8,#e3b863);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:-.01em;
+  }
+  .cta p{
+    color:#c8b78a;
+    margin:0 0 32px;
+    font-size:18px;
+  }
+  .btn{
+    display:inline-block;margin:6px;
+    padding:16px 32px;
+    background:linear-gradient(180deg,#f0d28a,#b88a36);
+    color:#1a1208;font-weight:600;
+    border-radius:999px;
+    font-family:var(--sans);
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    transition:transform .2s,box-shadow .2s;
+    box-shadow:0 4px 16px -4px rgba(227,184,99,.4);
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 32px -8px rgba(227,184,99,.6);
+    color:#1a1208;
+  }
+  .btn.ghost{
+    background:transparent;
+    color:var(--accent);
+    border:1px solid var(--gold-2);
+    box-shadow:none;
+  }
+  .btn.ghost:hover{background:rgba(227,184,99,.1);color:#f5ead0}
+
+  /* ====== FOOTER ====== */
+  footer{
+    text-align:center;
+    padding:48px 16px;
+    color:var(--ink-dim);
+    font-family:var(--sans);
+    font-size:12px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    border-top:1px solid var(--line);
+  }
+  footer .glyph{margin:0 8px;color:var(--gold);font-size:14px}
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width:640px){
+    header{padding:80px 20px 70px}
+    main{padding:40px 16px 60px}
+    .day{padding:24px 20px}
+    .day h3{font-size:24px}
+    .card{padding:24px}
+    .cta h2{font-size:32px}
+    header .meta{gap:24px}
+    header .meta strong{font-size:22px}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <svg class="hero-pyramids" viewBox="0 0 900 120" preserveAspectRatio="none" aria-hidden="true">
+    <polygon points="200,120 320,30 440,120" fill="none" stroke="#e3b863" stroke-width="1"/>
+    <polygon points="380,120 540,10 700,120" fill="none" stroke="#e3b863" stroke-width="1"/>
+    <polygon points="640,120 720,50 800,120" fill="none" stroke="#e3b863" stroke-width="1"/>
+  </svg>
+  <div class="glyph-row">𓂀 &nbsp; 𓁹 &nbsp; 𓃭 &nbsp; 𓆣 &nbsp; 𓂀</div>
+  <div class="eyebrow">Land of the Pharaohs</div>
+  <h1>Ancient <em>Egypt</em><br>Itinerary</h1>
+  <p class="lead">Pyramids, temples, tombs, and the slow drift of the Nile. Pick your pace — five to fourteen days from Cairo to Abu Simbel.</p>
+  <div class="meta">
+    <div><strong>4</strong>routes</div>
+    <div><strong>40+</strong>sites</div>
+    <div><strong>5,000</strong>years of history</div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button data-tab="d5" class="active">5 Days</button>
+  <button data-tab="d7">7 Days</button>
+  <button data-tab="d10">10 Days</button>
+  <button data-tab="d14">14 Days</button>
+</nav>
+
+<main>
+
+<!-- 5 DAYS -->
+<section class="panel active" id="d5">
+  <p class="intro">The essentials. Cairo, Giza, Luxor. Tight but covers the headline sites — for travelers short on time who still want the pyramids and a temple crawl.</p>
+
+  <div class="day">
+    <h3><span class="num">DAY 01</span>Arrival &amp; Cairo <span class="city">Cairo</span></h3>
+    <ul>
+      <li><strong>Morning:</strong> Arrive Cairo International. Hotel check-in, rest.</li>
+      <li><strong>Afternoon:</strong> Egyptian Museum — Tutankhamun's mask, royal mummies hall.</li>
+      <li><strong>Evening:</strong> Dinner in Zamalek, Nile riverfront walk.</li>
+    </ul>
+    <div class="tip">Museum moved most collection to GEM (Grand Egyptian Museum) near Giza — check what's open before going.</div>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 02</span>Giza Pyramids <span class="city">Giza</span></h3>
+    <ul>
+      <li><strong>Sunrise:</strong> Great Pyramid, Khafre, Menkaure. Optional entry into any pyramid.</li>
+      <li><strong>Late morning:</strong> Solar Boat Museum.</li>
+      <li><strong>Afternoon:</strong> Great Sphinx &amp; Valley Temple. Sound &amp; Light show in the evening.</li>
+    </ul>
+    <div class="tip">Camel ride at the panhandle — agree on price before mounting. Sunrise beats midday (cooler, fewer crowds).</div>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 03</span>Fly to Luxor <span class="city">Luxor</span></h3>
+    <ul>
+      <li><strong>Flight:</strong> Cairo → Luxor (~1h).</li>
+      <li><strong>East Bank:</strong> Karnak Temple complex, Luxor Temple (lit at night).</li>
+      <li><strong>Evening:</strong> Hotel on the West Bank.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 04</span>West Bank <span class="city">Luxor</span></h3>
+    <ul>
+      <li><strong>Morning:</strong> Valley of the Kings — three tombs included in ticket (Tut, Seti I, Ramses V/VI worth the extra).</li>
+      <li><strong>Midday:</strong> Hatshepsut's temple at Deir el-Bahari.</li>
+      <li><strong>Afternoon:</strong> Colossi of Memnon, then Medinet Habu (Ramses III mortuary temple — underrated).</li>
+    </ul>
+    <div class="tip">Photography forbidden in most tombs. Tut's tomb costs extra but is the only one with wall paintings fully intact.</div>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 05</span>Fly Home <span class="city">Luxor → Cairo</span></h3>
+    <ul>
+      <li><strong>Morning:</strong> Hot-air balloon over the West Bank (optional, ~$80).</li>
+      <li><strong>Flight:</strong> Luxor → Cairo → home, or direct Luxor departure.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7 DAYS -->
+<section class="panel" id="d7">
+  <p class="intro">The classic. Adds Aswan, Philae, and a Nile felucca — the sweet spot for first-timers who want temples <em>and</em> atmosphere.</p>
+
+  <div class="day">
+    <h3><span class="num">DAY 01–02</span>Cairo &amp; Giza <span class="city">Cairo</span></h3>
+    <ul>
+      <li>Day 1: Old Cairo, Coptic Quarter, Khan el-Khalili bazaar.</li>
+      <li>Day 2: Giza plateau at sunrise, Sphinx, GEM if open.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 03</span>Fly to Luxor, East Bank <span class="city">Luxor</span></h3>
+    <ul><li>Karnak Temple, Luxor Temple illuminated at night.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 04</span>West Bank <span class="city">Luxor</span></h3>
+    <ul><li>Valley of the Kings, Hatshepsut, Medinet Habu, Colossi of Memnon.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 05</span>Drive to Aswan <span class="city">Aswan</span></h3>
+    <ul>
+      <li>~3.5h drive or train. Check in, rest.</li>
+      <li>Sunset felucca around Elephantine Island.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 06</span>Aswan &amp; Philae <span class="city">Aswan</span></h3>
+    <ul>
+      <li><strong>Morning:</strong> Philae Temple (Isis, relocated to Agilkia Island).</li>
+      <li><strong>Afternoon:</strong> Unfinished Obelisk, High Dam, optional Nubian village visit.</li>
+    </ul>
+    <div class="tip">Philae at golden hour beats midday — bring a tripod if you shoot.</div>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 07</span>Fly Home <span class="city">Aswan → Cairo</span></h3>
+    <ul><li>Early flight via Cairo, or stay one more night in Aswan if jet-lagged.</li></ul>
+  </div>
+</section>
+
+<!-- 10 DAYS -->
+<section class="panel" id="d10">
+  <p class="intro">The classics plus a 3-night Nile cruise. Slow the pace, add Edfu, Kom Ombo, and time on the water.</p>
+
+  <div class="day">
+    <h3><span class="num">DAY 01–02</span>Cairo <span class="city">Cairo</span></h3>
+    <ul>
+      <li>Egyptian Museum / GEM, Old Cairo, Khan el-Khalili.</li>
+      <li>Saladin Citadel, Muhammad Ali Mosque, panoramic city views.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 03</span>Giza &amp; Memphis <span class="city">Giza · Saqqara</span></h3>
+    <ul>
+      <li>Pyramids of Giza, Sphinx, Solar Boat.</li>
+      <li>Drive to Saqqara: Step Pyramid of Djoser (oldest stone building in the world).</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 04</span>Luxor, Embark <span class="city">Luxor</span></h3>
+    <ul>
+      <li>Fly Cairo → Luxor. Karnak Temple.</li>
+      <li>Board Nile cruise, lunch on board, Luxor Temple at night.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 05</span>West Bank <span class="city">Luxor</span></h3>
+    <ul>
+      <li>Valley of the Kings, Hatshepsut, Medinet Habu, Colossi of Memnon.</li>
+      <li>Cruise departs Luxor for Edfu overnight.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 06</span>Edfu &amp; Kom Ombo <span class="city">On the Nile</span></h3>
+    <ul>
+      <li><strong>Morning:</strong> Horus Temple at Edfu (horse-carriage ride from dock).</li>
+      <li><strong>Afternoon:</strong> Kom Ombo — unique double temple (Sobek &amp; Horus the Elder). Crocodile museum.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 07</span>Aswan <span class="city">Aswan</span></h3>
+    <ul>
+      <li>Philae Temple, High Dam, Unfinished Obelisk.</li>
+      <li>Disembark, hotel in Aswan, Nubian dinner.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 08</span>Abu Simbel (Optional) <span class="city">Aswan · Abu Simbel</span></h3>
+    <ul><li>3am convoy drive (~3h each way) or fly. Ramesses II's rock-cut temples. Back by evening.</li></ul>
+    <div class="tip">Fly option ($250ish) saves 6h of road. Worth it for a second visit to Egypt later.</div>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 09</span>Return to Cairo <span class="city">Aswan → Cairo</span></h3>
+    <ul><li>Fly Aswan → Cairo. Free afternoon: pool, last-minute souk, dinner cruise on the Nile.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 10</span>Fly Home <span class="city">Cairo</span></h3>
+    <ul><li>Transfer to airport.</li></ul>
+  </div>
+</section>
+
+<!-- 14 DAYS -->
+<section class="panel" id="d14">
+  <p class="intro">The deep dive. Adds Alexandria, the Red Sea, and Siwa — for travelers who want desert oases, Mediterranean coast, and unhurried time between temples.</p>
+
+  <div class="day">
+    <h3><span class="num">DAY 01–02</span>Cairo <span class="city">Cairo</span></h3>
+    <ul><li>Egyptian Museum / GEM, Coptic Cairo, Islamic Cairo walking tour, Khan el-Khalili.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 03</span>Giza &amp; Saqqara <span class="city">Giza · Saqqara · Dashur</span></h3>
+    <ul><li>Pyramids, Sphinx, Saqqara (Djoser), Dahshur (Bent &amp; Red Pyramids — quieter than Giza).</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 04</span>Train to Alexandria <span class="city">Alexandria</span></h3>
+    <ul><li>Bibliotheca Alexandrina, Qaitbay Citadel, Pompey's Pillar, Catacombs of Kom el-Shoqafa.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 05</span>Alexandria &amp; Coast <span class="city">Alexandria</span></h3>
+    <ul><li>Montaza Palace, seafood lunch, Corniche sunset, optional swim at Mamoura.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 06</span>Siwa Oasis <span class="city">Siwa</span></h3>
+    <ul><li>Drive or fly to Siwa (long road, 8h — or fly to Marsa Matrouh + transfer). Salt lakes, Oracle Temple, hot springs.</li></ul>
+    <div class="tip">Siwa is a 2-3 day commitment. Skip if tight on time; keep if desert silence appeals.</div>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 07</span>Siwa <span class="city">Siwa</span></h3>
+    <ul><li>Shali fortress, Mountain of the Dead, sunset from Dakrour.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 08</span>Fly to Luxor <span class="city">Luxor</span></h3>
+    <ul><li>Siwa → Cairo → Luxor (full travel day). Or Siwa → Marsa Matrouh → Cairo → Luxor.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 09</span>East Bank, Embark <span class="city">Luxor</span></h3>
+    <ul><li>Karnak, Luxor Temple, board cruise.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 10</span>West Bank <span class="city">Luxor</span></h3>
+    <ul><li>Valley of the Kings, Hatshepsut, Medinet Habu, Colossi of Memnon.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 11</span>Edfu &amp; Kom Ombo <span class="city">On the Nile</span></h3>
+    <ul><li>Horus at Edfu, double temple of Kom Ombo.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 12</span>Aswan &amp; Philae <span class="city">Aswan</span></h3>
+    <ul><li>Philae, High Dam, Unfinished Obelisk, felucca at sunset.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 13</span>Abu Simbel <span class="city">Aswan · Abu Simbel</span></h3>
+    <ul><li>Day trip by fly or convoy. Optional: Nubian dinner back in Aswan.</li></ul>
+  </div>
+
+  <div class="day">
+    <h3><span class="num">DAY 14</span>Fly Home <span class="city">Aswan → Cairo</span></h3>
+    <ul><li>Aswan → Cairo, onward international.</li></ul>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section class="extras">
+
+  <div class="card">
+    <h2><span class="ic">🧳</span>Packing List</h2>
+    <ul>
+      <li>Lightweight cotton / linen (day), warm layer (desert nights)</li>
+      <li>Modest cover for mosques (shoulders + knees)</li>
+      <li>Sun hat, SPF 50+, polarized sunglasses</li>
+      <li>Reusable water bottle — heat dehydrates fast</li>
+      <li>Comfortable walking shoes + sandals</li>
+      <li>Headscarf / shemagh (sand + sun + mosques)</li>
+      <li>Universal adapter (type C/F, 220V)</li>
+      <li>Small daypack with zippers</li>
+      <li>Anti-diarrheal, oral rehydration, basic first aid</li>
+      <li>Cash in small EGP notes (tipping culture, bazaars)</li>
+    </ul>
+  </div>
+
+  <div class="card budget">
+    <h2><span class="ic">💰</span>Budget Estimate (per person, USD)</h2>
+    <table>
+      <thead><tr><th>Tier</th><th>Daily</th><th>5D</th><th>7D</th><th>10D</th><th>14D</th></tr></thead>
+      <tbody>
+        <tr><td>Backpacker</td><td>$40</td><td>$200</td><td>$280</td><td>$400</td><td>$560</td></tr>
+        <tr><td>Mid-range</td><td>$130</td><td>$650</td><td>$910</td><td>$1,300</td><td>$1,820</td></tr>
+        <tr><td>Luxury</td><td>$350+</td><td>$1,750</td><td>$2,450</td><td>$3,500</td><td>$4,900+</td></tr>
+      </tbody>
+    </table>
+    <p style="font-family:var(--sans);font-size:11px;color:var(--ink-dim);margin-top:14px;line-height:1.6;letter-spacing:.02em">Excludes international flights. Nile cruise adds $400–$1,500 by boat class. Internal flights Cairo–Luxor–Aswan run $90–$150 each.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">📅</span>Best Time to Go</h2>
+    <ul>
+      <li><strong>Oct–Apr:</strong> Cool (18–26°C), ideal for all sites.</li>
+      <li><strong>May–Sep:</strong> Hot (35–45°C), low season, cheaper.</li>
+      <li><strong>Ramadan:</strong> Sites stay open but hours shift, restaurants close midday.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">🛂</span>Practical Notes</h2>
+    <ul>
+      <li>Visa on arrival: $25 USD, or e-visa online.</li>
+      <li>Currency: Egyptian Pound (EGP). USD widely accepted.</li>
+      <li>Tipping (baksheesh) expected — small change adds up.</li>
+      <li>Drinks: bottled water only. Ice in hotels/restaurants is fine.</li>
+      <li>SIM: buy Vodafone/Orange at airport ($5 for 10GB).</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- BOOKING FORM -->
+<section class="form-section" id="book">
+  <h2>Request a Booking</h2>
+  <p class="lead">Tell us the trip you want. We'll reply within 24 hours with a quote, suggested guides, and a draft itinerary.</p>
+  <form id="booking-form" class="form-grid" novalidate>
+    <div class="form-row">
+      <label for="b-name">Name</label>
+      <input id="b-name" name="name" type="text" required maxlength="200" placeholder="Your full name">
+    </div>
+    <div class="form-row">
+      <label for="b-email">Email</label>
+      <input id="b-email" name="email" type="email" required placeholder="you@email.com">
+    </div>
+    <div class="form-row">
+      <label for="b-phone">Phone (optional)</label>
+      <input id="b-phone" name="phone" type="tel" maxlength="50" placeholder="+1 555 0123">
+    </div>
+    <div class="form-row">
+      <label for="b-itin">Itinerary</label>
+      <select id="b-itin" name="itinerary" required>
+        <option value="">Choose a route</option>
+        <option value="5-day">5 Days · Essentials</option>
+        <option value="7-day">7 Days · Classic</option>
+        <option value="10-day">10 Days · With Nile Cruise</option>
+        <option value="14-day">14 Days · Deep Dive</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label for="b-date">Start Date</label>
+      <input id="b-date" name="start_date" type="date" required>
+    </div>
+    <div class="form-row">
+      <label for="b-size">Group Size</label>
+      <input id="b-size" name="group_size" type="number" min="1" max="50" value="2" required>
+    </div>
+    <div class="form-row full">
+      <label for="b-tier">Budget Tier</label>
+      <select id="b-tier" name="tier" required>
+        <option value="mid-range">Mid-range ($130/day)</option>
+        <option value="backpacker">Backpacker ($40/day)</option>
+        <option value="luxury">Luxury ($350+/day)</option>
+      </select>
+    </div>
+    <div class="form-row full">
+      <label for="b-notes">Notes / Special Requests</label>
+      <textarea id="b-notes" name="notes" maxlength="2000" placeholder="Any accessibility needs, must-see sites, dietary restrictions, travel companions..."></textarea>
+    </div>
+    <div class="submit-row full">
+      <button type="submit" class="btn">Request Quote</button>
+      <span class="status-msg" id="b-status"></span>
+    </div>
+  </form>
+</section>
+
+<!-- CONTACT + NEWSLETTER -->
+<section class="form-section" id="contact">
+  <h2>Get in Touch</h2>
+  <p class="lead">Custom itineraries, group bookings, or questions about a trip. We read every message.</p>
+  <form id="contact-form" class="form-grid" novalidate>
+    <div class="form-row">
+      <label for="c-name">Name</label>
+      <input id="c-name" name="name" type="text" required maxlength="200" placeholder="Your name">
+    </div>
+    <div class="form-row">
+      <label for="c-email">Email</label>
+      <input id="c-email" name="email" type="email" required placeholder="you@email.com">
+    </div>
+    <div class="form-row full">
+      <label for="c-msg">Message</label>
+      <textarea id="c-msg" name="message" required maxlength="5000" placeholder="Tell us what you're thinking..."></textarea>
+    </div>
+    <div class="submit-row full">
+      <button type="submit" class="btn">Send Message</button>
+      <span class="status-msg" id="c-status"></span>
+    </div>
+  </form>
+
+  <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--line)">
+    <h2 style="font-size:24px;margin-bottom:6px">Newsletter</h2>
+    <p class="lead" style="margin-bottom:16px">New routes, seasonal deals, and travel notes. ~1 email per month.</p>
+    <form id="subscribe-form" class="newsletter" novalidate>
+      <input name="email" type="email" required placeholder="you@email.com" aria-label="Email">
+      <button type="submit" class="btn">Subscribe</button>
+      <span class="status-msg" id="s-status"></span>
+    </form>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>Or browse curated packages</h2>
+  <p>Skip the planning — pick a vetted tour from trusted partners.</p>
+  <a class="btn" href="https://www.getyourguide.com/cairo-l169/" target="_blank" rel="noopener">GetYourGuide</a>
+  <a class="btn ghost" href="https://www.viator.com/Egypt-tours/d19" target="_blank" rel="noopener">Viator</a>
+</div>
+
+</main>
+
+<footer>
+  <span class="glyph">𓂀</span>Ancient Egypt Itinerary<span class="glyph">𓂀</span><br>
+  Built for travelers, not tours
+</footer>
+
+<script>
+  // ---- tab switching ----
+  const tabs = document.querySelectorAll('nav.tabs button');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  // ---- pre-fill booking form when switching tabs ----
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sel = document.getElementById('b-itin');
+      if (sel && btn.dataset.tab.startsWith('d')) {
+        const map = { d5:'5-day', d7:'7-day', d10:'10-day', d14:'14-day' };
+        if (map[btn.dataset.tab]) sel.value = map[btn.dataset.tab];
+      }
+    });
+  });
+
+  // ---- min date = today ----
+  const dateInput = document.getElementById('b-date');
+  if (dateInput) {
+    const t = new Date();
+    dateInput.min = t.toISOString().slice(0,10);
+  }
+
+  // ---- form helpers ----
+  function setStatus(el, ok, msg) {
+    el.classList.remove('ok','err');
+    el.classList.add(ok ? 'ok' : 'err');
+    el.textContent = msg;
+    el.style.display = 'inline-block';
+  }
+
+  async function postJSON(url, body) {
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await r.json().catch(() => ({ ok:false, error:'bad response' }));
+    if (!r.ok || !data.ok) throw new Error(data.error || `HTTP ${r.status}`);
+    return data;
+  }
+
+  function serialize(form) {
+    return Object.fromEntries(new FormData(form).entries());
+  }
+
+  // ---- booking form ----
+  document.getElementById('booking-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('b-status');
+    const btn = e.target.querySelector('button[type=submit]');
+    const data = serialize(e.target);
+    data.group_size = Number(data.group_size);
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      await postJSON('/api/booking', data);
+      setStatus(status, true, '✓ Quote request received. We will reply within 24 hours.');
+      e.target.reset();
+    } catch (err) {
+      setStatus(status, false, '✕ ' + err.message);
+    } finally {
+      btn.disabled = false; btn.textContent = 'Request Quote';
+    }
+  });
+
+  // ---- contact form ----
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('c-status');
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      await postJSON('/api/contact', serialize(e.target));
+      setStatus(status, true, '✓ Message sent. We will be in touch soon.');
+      e.target.reset();
+    } catch (err) {
+      setStatus(status, false, '✕ ' + err.message);
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send Message';
+    }
+  });
+
+  // ---- newsletter ----
+  document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('s-status');
+    const btn = e.target.querySelector('button[type=submit]');
+    const data = serialize(e.target);
+    btn.disabled = true; btn.textContent = 'Subscribing…';
+    try {
+      const r = await postJSON('/api/subscribe', data);
+      setStatus(status, true, r.already ? '✓ You are already on the list.' : '✓ Subscribed. Welcome aboard.');
+    } catch (err) {
+      setStatus(status, false, '✕ ' + err.message);
+    } finally {
+      btn.disabled = false; btn.textContent = 'Subscribe';
+    }
+  });
+</script>
+
+</body>
+</html>
