@@ -62,10 +62,17 @@ app.use((err, _req, res, _next) => {
 });
 
 const PORT = Number(process.env.PORT) || 3000;
-app.listen(PORT, () => {
-  console.log(`[server] listening on http://localhost:${PORT}`);
-  console.log(`[server] admin at   http://localhost:${PORT}/admin`);
-});
+
+// Only listen when run directly (local dev). On Vercel/serverless
+// the platform imports the app and uses it as the request handler.
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`[server] listening on http://localhost:${PORT}`);
+    console.log(`[server] admin at   http://localhost:${PORT}/admin`);
+  });
+}
+
+export default app;
 
 // ---------- ADMIN PAGE (inline) ----------
 const adminPage = /* html */`<!doctype html>

@@ -1,42 +1,50 @@
 // Unified DB layer: Neon Pool (serverless) in production,
 // node:sqlite (file) locally when DATABASE_URL is unset.
 //
-// Public surface:
-//   db.dialect  → 'neon' | 'sqlite'
-//   await db.all(sql, params)   → array of rows
-//   await db.get(sql, params)   → first row or undefined
-//   await db.run(sql, params)   → { lastInsertRowid, changes }
-//
-// All params use ? placeholders (sqlite style). For neon we convert
-// to $1, $2, ... at call time.
+// All setup is lazy — first query initializes the connection + schema.
+// This avoids top-level await issues in Vercel serverless functions.
 
 const hasNeon = !!process.env.DATABASE_URL;
 
-let driver;
-let pool;          // neon Pool
-let local;         // sqlite DatabaseSync
+let driver = null;
+let pool = null;       // neon Pool
+let local = null;      // sqlite DatabaseSync
+let initialized = false;
+let initPromise = null;
 
-if (hasNeon) {
-  const { Pool } = await import('@neondatabase/serverless');
-  pool = new Pool({ connectionString: process.env.DATABASE_URL });
-  driver = 'neon';
-  console.log('[db] driver: neon Pool (serverless postgres)');
-} else {
-  const { DatabaseSync } = await import('node:sqlite');
-  const path = await import('node:path');
-  const fs = await import('node:fs');
-  const { fileURLToPath } = await import('node:url');
-  const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  const dataDir = path.join(__dirname, 'data');
-  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-  local = new DatabaseSync(path.join(dataDir, 'app.db'));
-  local.exec('PRAGMA journal_mode = WAL');
-  local.exec('PRAGMA foreign_keys = ON');
-  driver = 'sqlite';
-  console.log('[db] driver: node:sqlite (local file)');
+async function init() {
+  if (initialized) return;
+  if (initPromise) return initPromise;
+  initPromise = (async () => {
+    if (hasNeon) {
+      const { Pool } = await import('@neondatabase/serverless');
+      pool = new Pool({ connectionString: process.env.DATABASE_URL });
+      driver = 'neon';
+      console.log('[db] driver: neon Pool (serverless postgres)');
+      // Run schema. Use pool.query directly (no manual connect/release on serverless).
+      for (const stmt of SCHEMA_POSTGRES.split(';').map(s => s.trim()).filter(Boolean)) {
+        await pool.query(stmt);
+      }
+    } else {
+      const { DatabaseSync } = await import('node:sqlite');
+      const path = await import('node:path');
+      const fs = await import('node:fs');
+      const { fileURLToPath } = await import('node:url');
+      const __dirname = path.dirname(fileURLToPath(import.meta.url));
+      const dataDir = path.join(__dirname, 'data');
+      if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+      local = new DatabaseSync(path.join(dataDir, 'app.db'));
+      local.exec('PRAGMA journal_mode = WAL');
+      local.exec('PRAGMA foreign_keys = ON');
+      driver = 'sqlite';
+      console.log('[db] driver: node:sqlite (local file)');
+      local.exec(SCHEMA_SQLITE);
+    }
+    initialized = true;
+  })();
+  return initPromise;
 }
 
-// Convert ? placeholders to $1, $2, ... for postgres
 function toPg(text) {
   let i = 0;
   return text.replace(/\?/g, () => `$${++i}`);
@@ -108,27 +116,13 @@ const SCHEMA_POSTGRES = `
   CREATE INDEX IF NOT EXISTS idx_subscribers_created ON subscribers(created_at DESC);
 `;
 
-// Init schema
-if (driver === 'sqlite') {
-  local.exec(SCHEMA_SQLITE);
-} else {
-  const client = await pool.connect();
-  try {
-    for (const stmt of SCHEMA_POSTGRES.split(';').map(s => s.trim()).filter(Boolean)) {
-      await client.query(stmt);
-    }
-  } finally {
-    client.release();
-  }
-}
-
 export const db = {
-  dialect: driver,
+  get dialect() { return driver; },
 
   async all(text, params = []) {
+    await init();
     if (driver === 'sqlite') {
-      const stmt = local.prepare(text);
-      return stmt.all(...params);
+      return local.prepare(text).all(...params);
     } else {
       const { rows } = await pool.query(toPg(text), params);
       return rows;
@@ -136,9 +130,9 @@ export const db = {
   },
 
   async get(text, params = []) {
+    await init();
     if (driver === 'sqlite') {
-      const stmt = local.prepare(text);
-      return stmt.get(...params);
+      return local.prepare(text).get(...params);
     } else {
       const { rows } = await pool.query(toPg(text), params);
       return rows[0];
@@ -146,9 +140,9 @@ export const db = {
   },
 
   async run(text, params = []) {
+    await init();
     if (driver === 'sqlite') {
-      const stmt = local.prepare(text);
-      const info = stmt.run(...params);
+      const info = local.prepare(text).run(...params);
       return { lastInsertRowid: info.lastInsertRowid, changes: info.changes };
     } else {
       let sqlText = text;
